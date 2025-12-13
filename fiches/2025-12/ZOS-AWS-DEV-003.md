@@ -78,6 +78,8 @@ Job lancé depuis ISPF (menu “DevOps” ou option `=6` par ex.) :
 //STDERR  DD SYSOUT=*
 //STDPARM DD DUMMY
 
+```markdown
+---
 ### 3.2 Script /u/ibmuser/devops/get_from_git.sh
 
 #!/bin/sh
@@ -95,7 +97,9 @@ git pull origin main
 exit 0
 	
 ## 4. Chaîne “Push vers Git” (sources → Git)
+
 ### 4.1 JCL d’entrée (exemple IBMUSERP)
+```jcl
 //IBMUSERP JOB (ACCT),'COBOL PUSH',CLASS=A,MSGCLASS=X,
 //         MSGLEVEL=(1,1),REGION=0M,NOTIFY=&SYSUID
 //*
@@ -106,9 +110,11 @@ exit 0
 //STDOUT  DD SYSOUT=*
 //STDERR  DD SYSOUT=*
 //STDPARM DD DUMMY
+```
+# 4.2 Script /u/ibmuser/devops/push_to_git.sh (vue logique)
 
-### 4.2 Script /u/ibmuser/devops/push_to_git.sh (vue logique)
 #!/bin/sh
+```sh 
 cd /u/ibmuser/devops/zos-cobol-repo || exit 8
 
 # 1. Importer les PDS vers USS
@@ -124,8 +130,9 @@ git commit -m "Modifs depuis ISPF (IBMUSER)"
 git push origin main
 
 exit 0
-
+```
 #  5. Intégration avec Zowe / CI (cible V2)
+
 ## 5.1 Rôle de Zowe CLI
 
 À terme, l’idée est de ne plus faire seulement Git ↔ PDS, mais aussi :
@@ -140,7 +147,7 @@ récupérer les SYSOUT et les injecter dans des logs artefacts CI.
 
 Scénario type depuis un script USS :
 
-# Exemple logique, à adapter quand Zowe est finalisé
+#Exemple logique, à adapter quand Zowe est finalisé
 zowe zos-jobs submit local-file build_cobol.jcl --wfo
 zowe zos-jobs view all-spool-content JOB00123 > logs/build_JOB00123.txt
 
