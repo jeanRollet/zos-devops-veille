@@ -121,7 +121,7 @@ cd /u/ibmuser/devops/zos-cobol-repo || exit 8
 #    ./import_from_pds.sh COBOL "IBMUSER.COBOL"
 #    ./import_from_pds.sh JCL   "IBMUSER.JCL"
 
-# 2. Checker les différences
+# 2. Checker les différence s
 git status
 
 # 3. Commit + push (ici simplifié, à sécuriser)
