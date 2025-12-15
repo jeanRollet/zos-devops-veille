@@ -78,11 +78,12 @@ Job lancé depuis ISPF (menu “DevOps” ou option `=6` par ex.) :
 //STDERR  DD SYSOUT=*
 //STDPARM DD DUMMY
 
-```markdown
----
+```
+
 ### 3.2 Script /u/ibmuser/devops/get_from_git.sh
 
 #!/bin/sh
+```sh 
 # 1. Aller dans le repo
 cd /u/ibmuser/devops/zos-cobol-repo || exit 8
 
@@ -95,7 +96,7 @@ git pull origin main
 #    ./export_to_pds.sh JCL    "IBMUSER.JCL"
 
 exit 0
-	
+```	
 ## 4. Chaîne “Push vers Git” (sources → Git)
 
 ### 4.1 JCL d’entrée (exemple IBMUSERP)
